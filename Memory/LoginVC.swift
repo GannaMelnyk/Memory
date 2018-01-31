@@ -67,17 +67,25 @@ class LoginVC: UIViewController {
     @IBAction func loginUserButton(_ sender: UIButton) {
         isFieldEmpty()
         users = fetchedResultsController.fetchedObjects as! [Login]
-        for user in users {
-            if (user.login == nameTextField.text) {
-                if user.password == passTextField.text {
-                    nameForGame = user.login!
-                    goToTheNextScreen()
-                    break
-                } else {
-                    let alertController = UIAlertController(title: "Oops", message: "Wrong credentials", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                    alertController.addAction(okAction)
-                    present(alertController, animated: false, completion: nil)
+        let userLogin = nameTextField.text ?? ""
+        if !logins.contains(userLogin) {
+            let alertController = UIAlertController(title: "Oops", message: "User unexists", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: false, completion: nil)
+        } else {
+            for user in users {
+                if (user.login == userLogin) {
+                    if user.password == passTextField.text {
+                        nameForGame = user.login!
+                        goToTheNextScreen()
+                        break
+                    } else {
+                        let alertController = UIAlertController(title: "Oops", message: "Wrong credentials", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                        alertController.addAction(okAction)
+                        present(alertController, animated: false, completion: nil)
+                    }
                 }
             }
         }

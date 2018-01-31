@@ -14,11 +14,10 @@ class GameVC: UIViewController {
     var pictures: [UIImage] = []
     var selectedIndexies: [IndexPath] = []
     var alreadySeenIndexies: [IndexPath] = []
-    var timer: Timer!
+    var timer: Timer?
     let penalty = 2
-    let timePenalty = 5.0
-    var sellsCounter = 4
-    var pauseIsPressed = true
+    let timePenalty = 2.0
+    var cellsCounter = 4
     let cellForRowAndCollomn: [Int: [Int]] = [4: [2,2], 8: [2,4], 12: [3,4], 16: [4,4], 20: [4,5], 24: [4,6], 28: [4,7], 32: [4,8], 36: [6,6], 40: [5,8]]
     var score:Int = 0 {
         didSet{
@@ -31,10 +30,8 @@ class GameVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        timer = Timer.scheduledTimer(timeInterval: timePenalty, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
         newGame()
         navigationItem.title = "\(score)"
-     //   customizeBottomBar()
     }
     
     @objc func updateTimer() {
@@ -46,7 +43,7 @@ class GameVC: UIViewController {
         initialShuffler()
         pairsShuffler()
         selectedIndexies.removeAll()
-        sellsCounter = cellsAmount
+        cellsCounter = cellsAmount
         alreadySeenIndexies.removeAll()
         score = 0
         collectionView.reloadData()
@@ -83,18 +80,17 @@ class GameVC: UIViewController {
     }
     
     func setPause() {
-        if pauseIsPressed {
-            pauseIsPressed = false
+        if !(timer?.isValid ?? false) {
             timer = Timer.scheduledTimer(timeInterval: timePenalty, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
             self.collectionView.isUserInteractionEnabled = true
         } else {
-            pauseIsPressed = true
-            timer.invalidate()
+            timer?.invalidate()
             self.collectionView.isUserInteractionEnabled = false
         }
     }
     
     @IBAction func reload(_ sender: UIBarButtonItem) {
+        timer?.invalidate()
         newGame()
     }
     
@@ -112,6 +108,19 @@ class GameVC: UIViewController {
         layer.render(in: UIGraphicsGetCurrentContext()!)
         let screenshot = UIGraphicsGetImageFromCurrentImageContext()
         return screenshot
+    }
+    
+    func endTheGame(){
+        timer?.invalidate()
+        performSegue(withIdentifier: "segueToResults", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let holder = segue.destination as! WrittingResultsController
+        holder.cellsAmount = cellsAmount
+        holder.score = score
+        holder.userName = userName
+        holder.date = Date()
     }
 }
 
@@ -167,8 +176,8 @@ extension GameVC: UICollectionViewDelegate {
                 if pictures[selectedIndexies[0].row] == pictures[selectedIndexies[1].row] {
                     cell1.remove()
                     cell2.remove()
-                    sellsCounter -= 2
-                    if sellsCounter == 0 {
+                    cellsCounter -= 2
+                    if cellsCounter == 0 {
                         endTheGame()
                     }
                 } else {
@@ -186,17 +195,6 @@ extension GameVC: UICollectionViewDelegate {
         }
     }
     
-    func endTheGame(){
-        performSegue(withIdentifier: "segueToResults", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let holder = segue.destination as! WrittingResultsController
-        holder.date = Date()
-        holder.cellsAmount = cellsAmount
-        holder.score = score
-        holder.userName = userName
-    }
 }
 
 //

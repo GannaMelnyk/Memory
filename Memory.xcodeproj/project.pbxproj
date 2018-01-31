@@ -62,10 +62,6 @@
 		D33BABF7201E4F6800EE1512 = {
 			isa = PBXGroup;
 			children = (
-				D346892F20206EC300235DD0 /* Scores+CoreDataClass.swift */,
-				D346893020206EC300235DD0 /* Scores+CoreDataProperties.swift */,
-				D33BAC1A201E5B8600EE1512 /* Login+CoreDataClass.swift */,
-				D33BAC1B201E5B8600EE1512 /* Login+CoreDataProperties.swift */,
 				D33BAC02201E4F6800EE1512 /* Memory */,
 				D33BAC01201E4F6800EE1512 /* Products */,
 			);
@@ -90,14 +86,34 @@
 				D346893320206F4300235DD0 /* WrittingResultsController.swift */,
 				D328B5FD201F432500591543 /* GameCellCVCell.swift */,
 				D33BAC20201E7FD100EE1512 /* LevelVC.swift */,
-				D33BAC07201E4F6800EE1512 /* Main.storyboard */,
-				D33BAC0D201E4F6800EE1512 /* Assets.xcassets */,
-				D33BAC18201E4FFA00EE1512 /* CoreManager.swift */,
-				D33BAC0F201E4F6800EE1512 /* LaunchScreen.storyboard */,
+				D34689382021E81800235DD0 /* View */,
+				D34689372021E7B900235DD0 /* CoreData */,
 				D33BAC12201E4F6800EE1512 /* Info.plist */,
-				D33BAC0A201E4F6800EE1512 /* Memory.xcdatamodeld */,
 			);
 			path = Memory;
+			sourceTree = "<group>";
+		};
+		D34689372021E7B900235DD0 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				D33BAC0A201E4F6800EE1512 /* Memory.xcdatamodeld */,
+				D33BAC18201E4FFA00EE1512 /* CoreManager.swift */,
+				D33BAC1A201E5B8600EE1512 /* Login+CoreDataClass.swift */,
+				D33BAC1B201E5B8600EE1512 /* Login+CoreDataProperties.swift */,
+				D346892F20206EC300235DD0 /* Scores+CoreDataClass.swift */,
+				D346893020206EC300235DD0 /* Scores+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		D34689382021E81800235DD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D33BAC0D201E4F6800EE1512 /* Assets.xcassets */,
+				D33BAC07201E4F6800EE1512 /* Main.storyboard */,
+				D33BAC0F201E4F6800EE1512 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -20,6 +20,6 @@ extension Scores {
     @NSManaged public var level: Int16
     @NSManaged public var score: Int16
     @NSManaged public var name: String?
-    @NSManaged public var date: NSDate?
+    @NSManaged public var gameDate: Date?
 
 }
