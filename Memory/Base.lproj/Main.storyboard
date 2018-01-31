@@ -168,7 +168,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9q6-tQ-0Fy">
-                                <rect key="frame" x="0.0" y="88" width="367" height="690"/>
+                                <rect key="frame" x="0.0" y="88" width="367" height="637"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="hmf-fb-m5R">
@@ -214,11 +214,37 @@
                                     <outlet property="delegate" destination="qeV-ec-BVS" id="w4c-hf-ga5"/>
                                 </connections>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wLH-0d-WWH">
+                                <rect key="frame" x="0.0" y="734" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="YGh-v5-2ds"/>
+                                    <barButtonItem image="pause" id="TYE-is-qNj">
+                                        <connections>
+                                            <action selector="pause:" destination="qeV-ec-BVS" id="cz4-47-rLQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="sls-Iq-8Ko"/>
+                                    <barButtonItem image="reload" id="8UI-Vu-YAI">
+                                        <connections>
+                                            <action selector="reload:" destination="qeV-ec-BVS" id="bj0-xC-GFw"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="X5h-b3-hWe"/>
+                                    <barButtonItem image="share" id="xuL-YD-6Sl">
+                                        <connections>
+                                            <action selector="share:" destination="qeV-ec-BVS" id="GQK-s9-eEU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="WTi-y3-1E3"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="8yt-XK-Udt"/>
                     </view>
                     <connections>
+                        <outlet property="barView" destination="wLH-0d-WWH" id="7QI-fX-sBJ"/>
                         <outlet property="collectionView" destination="9q6-tQ-0Fy" id="Jhu-wC-UdR"/>
                         <segue destination="e6n-uM-R7v" kind="show" identifier="segueToResults" id="NBq-KN-KZR"/>
                     </connections>
@@ -294,4 +320,9 @@
             <point key="canvasLocation" x="2346" y="154"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pause" width="30" height="30"/>
+        <image name="reload" width="30" height="30"/>
+        <image name="share" width="30" height="33"/>
+    </resources>
 </document>

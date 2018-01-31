@@ -13,13 +13,12 @@ class GameVC: UIViewController {
     var userName = ""
     var pictures: [UIImage] = []
     var selectedIndexies: [IndexPath] = []
-    var cellIndexies: [IndexPath] = []
     var alreadySeenIndexies: [IndexPath] = []
     var timer: Timer!
     let penalty = 2
     let timePenalty = 5.0
     var sellsCounter = 4
-    var pauseIsPressed = false
+    var pauseIsPressed = true
     let cellForRowAndCollomn: [Int: [Int]] = [4: [2,2], 8: [2,4], 12: [3,4], 16: [4,4], 20: [4,5], 24: [4,6], 28: [4,7], 32: [4,8], 36: [6,6], 40: [5,8]]
     var score:Int = 0 {
         didSet{
@@ -27,35 +26,31 @@ class GameVC: UIViewController {
         }
     }
     
+    @IBOutlet weak var barView: UIToolbar!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         timer = Timer.scheduledTimer(timeInterval: timePenalty, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
         newGame()
-        customizeNavigationBar()
+        navigationItem.title = "\(score)"
+     //   customizeBottomBar()
     }
     
     @objc func updateTimer() {
         score += 1
     }
     
-    @objc func newGame() {
+    func newGame() {
         pictures = [#imageLiteral(resourceName: "027-avocado"), #imageLiteral(resourceName: "014-pitaya"), #imageLiteral(resourceName: "028-radishes"), #imageLiteral(resourceName: "032-cherry"), #imageLiteral(resourceName: "015-pomegranate"), #imageLiteral(resourceName: "005-mangosteen"), #imageLiteral(resourceName: "035-olives"), #imageLiteral(resourceName: "017-peas"), #imageLiteral(resourceName: "038-artichoke"), #imageLiteral(resourceName: "008-pumpkin"), #imageLiteral(resourceName: "046-peach"), #imageLiteral(resourceName: "037-mushroom"), #imageLiteral(resourceName: "012-carambola"), #imageLiteral(resourceName: "045-orange"), #imageLiteral(resourceName: "040-papaya"), #imageLiteral(resourceName: "025-grapes"), #imageLiteral(resourceName: "050-garlic"), #imageLiteral(resourceName: "024-strawberry"), #imageLiteral(resourceName: "049-watermelon"), #imageLiteral(resourceName: "034-blueberries"), #imageLiteral(resourceName: "047-chili"), #imageLiteral(resourceName: "003-corn"), #imageLiteral(resourceName: "016-melon"), #imageLiteral(resourceName: "004-pear"), #imageLiteral(resourceName: "022-peanut"), #imageLiteral(resourceName: "042-cabbage"), #imageLiteral(resourceName: "001-tomato"), #imageLiteral(resourceName: "002-lettuce"), #imageLiteral(resourceName: "009-mango"), #imageLiteral(resourceName: "011-coconut"), #imageLiteral(resourceName: "020-cauliflower"), #imageLiteral(resourceName: "044-courgette"), #imageLiteral(resourceName: "039-carrot"), #imageLiteral(resourceName: "043-lemon")]
         initialShuffler()
         pairsShuffler()
         selectedIndexies.removeAll()
-        for index in cellIndexies {
-            let cell = collectionView?.cellForItem(at: index) as! GameCellCVCell
-            cell.flipDown()
-            cell.isAccessibilityElement = true
-            cell.isUserInteractionEnabled = true
-            cell.alpha = 1.0
-            pauseIsPressed = false
-        }
         sellsCounter = cellsAmount
         alreadySeenIndexies.removeAll()
         score = 0
+        collectionView.reloadData()
+        setPause()
     }
 
     func initialShuffler() {
@@ -83,34 +78,27 @@ class GameVC: UIViewController {
         }
     }
     
-    func customizeNavigationBar() {
-        let reloadButton = UIBarButtonItem(image: #imageLiteral(resourceName: "reload"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.newGame))
-        let pauseButton = UIBarButtonItem(image: #imageLiteral(resourceName: "pause"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.pause))
-        let shareButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.share))
-        self.navigationItem.rightBarButtonItems = [reloadButton, pauseButton, shareButton]
-       
-        navigationItem.title = "\(score)"
+    @IBAction func pause(_ sender: UIBarButtonItem) {
+        setPause()
     }
     
-    @objc func pause(){
+    func setPause() {
         if pauseIsPressed {
             pauseIsPressed = false
             timer = Timer.scheduledTimer(timeInterval: timePenalty, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
-            for index in cellIndexies {
-                let cell = collectionView?.cellForItem(at: index) as! GameCellCVCell
-                cell.isUserInteractionEnabled = true
-            }
+            self.collectionView.isUserInteractionEnabled = true
         } else {
             pauseIsPressed = true
             timer.invalidate()
-            for index in cellIndexies {
-                let cell = collectionView?.cellForItem(at: index) as! GameCellCVCell
-                cell.isUserInteractionEnabled = false
-            }
+            self.collectionView.isUserInteractionEnabled = false
         }
     }
     
-    @objc func share(){
+    @IBAction func reload(_ sender: UIBarButtonItem) {
+        newGame()
+    }
+    
+    @IBAction func share(_ sender: UIBarButtonItem) {
         let screenForSharing = captureScreen()
         let activityVC = UIActivityViewController(activityItems: [screenForSharing!], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view
@@ -137,7 +125,7 @@ extension GameVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "gameCellId", for: indexPath) as? GameCellCVCell else {
             fatalError("Wrong cell type dequeued")
         }
-        cellIndexies.append(indexPath)
+        cell.topCellImage.image = nil
         cell.gameCellImage.image = #imageLiteral(resourceName: "otherPaper")
         return cell
     }
