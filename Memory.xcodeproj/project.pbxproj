@@ -22,8 +22,10 @@
 		D33BAC23201E807D00EE1512 /* LevelCellCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BAC22201E807D00EE1512 /* LevelCellCVCell.swift */; };
 		D346893120206EC300235DD0 /* Scores+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346892F20206EC300235DD0 /* Scores+CoreDataClass.swift */; };
 		D346893220206EC300235DD0 /* Scores+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346893020206EC300235DD0 /* Scores+CoreDataProperties.swift */; };
-		D346893420206F4300235DD0 /* WrittingResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346893320206F4300235DD0 /* WrittingResultsController.swift */; };
+		D346893420206F4300235DD0 /* WrittingResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346893320206F4300235DD0 /* WrittingResultsVC.swift */; };
 		D3468936202075F300235DD0 /* WrittingResultsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */; };
+		D346893A20224EEE00235DD0 /* LeaderboardTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346893920224EEE00235DD0 /* LeaderboardTVCell.swift */; };
+		D346893C20224F2B00235DD0 /* LeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346893B20224F2B00235DD0 /* LeaderboardVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,8 +46,10 @@
 		D33BAC22201E807D00EE1512 /* LevelCellCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCellCVCell.swift; sourceTree = "<group>"; };
 		D346892F20206EC300235DD0 /* Scores+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scores+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D346893020206EC300235DD0 /* Scores+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scores+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		D346893320206F4300235DD0 /* WrittingResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittingResultsController.swift; sourceTree = "<group>"; };
+		D346893320206F4300235DD0 /* WrittingResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittingResultsVC.swift; sourceTree = "<group>"; };
 		D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittingResultsTVCell.swift; sourceTree = "<group>"; };
+		D346893920224EEE00235DD0 /* LeaderboardTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTVCell.swift; sourceTree = "<group>"; };
+		D346893B20224F2B00235DD0 /* LeaderboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 		D33BABF7201E4F6800EE1512 = {
 			isa = PBXGroup;
 			children = (
+				D346893B20224F2B00235DD0 /* LeaderboardVC.swift */,
+				D346893920224EEE00235DD0 /* LeaderboardTVCell.swift */,
 				D33BAC02201E4F6800EE1512 /* Memory */,
 				D33BAC01201E4F6800EE1512 /* Products */,
 			);
@@ -83,7 +89,7 @@
 				D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */,
 				D328B5FB201F2E6D00591543 /* GameVC.swift */,
 				D33BAC22201E807D00EE1512 /* LevelCellCVCell.swift */,
-				D346893320206F4300235DD0 /* WrittingResultsController.swift */,
+				D346893320206F4300235DD0 /* WrittingResultsVC.swift */,
 				D328B5FD201F432500591543 /* GameCellCVCell.swift */,
 				D33BAC20201E7FD100EE1512 /* LevelVC.swift */,
 				D34689382021E81800235DD0 /* View */,
@@ -190,14 +196,16 @@
 			files = (
 				D346893120206EC300235DD0 /* Scores+CoreDataClass.swift in Sources */,
 				D328B5FE201F432500591543 /* GameCellCVCell.swift in Sources */,
-				D346893420206F4300235DD0 /* WrittingResultsController.swift in Sources */,
+				D346893420206F4300235DD0 /* WrittingResultsVC.swift in Sources */,
 				D33BAC1C201E5B8600EE1512 /* Login+CoreDataClass.swift in Sources */,
+				D346893A20224EEE00235DD0 /* LeaderboardTVCell.swift in Sources */,
 				D33BAC19201E4FFA00EE1512 /* CoreManager.swift in Sources */,
 				D33BAC06201E4F6800EE1512 /* LoginVC.swift in Sources */,
 				D33BAC1D201E5B8600EE1512 /* Login+CoreDataProperties.swift in Sources */,
 				D33BAC23201E807D00EE1512 /* LevelCellCVCell.swift in Sources */,
 				D3468936202075F300235DD0 /* WrittingResultsTVCell.swift in Sources */,
 				D33BAC04201E4F6800EE1512 /* AppDelegate.swift in Sources */,
+				D346893C20224F2B00235DD0 /* LeaderboardVC.swift in Sources */,
 				D346893220206EC300235DD0 /* Scores+CoreDataProperties.swift in Sources */,
 				D33BAC21201E7FD100EE1512 /* LevelVC.swift in Sources */,
 				D328B5FC201F2E6D00591543 /* GameVC.swift in Sources */,

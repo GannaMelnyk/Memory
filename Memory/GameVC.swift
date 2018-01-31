@@ -116,7 +116,7 @@ class GameVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let holder = segue.destination as! WrittingResultsController
+        let holder = segue.destination as! WrittingResultsVC
         holder.cellsAmount = cellsAmount
         holder.score = score
         holder.userName = userName

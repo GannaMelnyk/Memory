@@ -24,7 +24,20 @@ class LevelVC: UIViewController {
         }
     }
     
+    @IBAction func leaderboardButton(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "leaderboardSegue", sender: self)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gameSegue" {
+            let holder = segue.destination as! GameVC
+            holder.cellsAmount = level * 4
+            holder.userName = user!
+        } else if segue.identifier == "leaderboardSegue" {
+            _ = segue.destination as! LeaderboardVC
+        }
+        
+    }
     
 }
 
@@ -57,12 +70,7 @@ extension LevelVC: UICollectionViewDelegate {
         level = Int(levels[indexPath.row])!
         performSegue(withIdentifier: "gameSegue", sender: self)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let holder = segue.destination as! GameVC
-        holder.cellsAmount = level * 4
-        holder.userName = user!
-    }
+   
 }
 
 //

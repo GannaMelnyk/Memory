@@ -9,12 +9,11 @@
 import UIKit
 import CoreData
 
-class WrittingResultsController: UIViewController {
+class WrittingResultsVC: UIViewController {
     var score = 0
     var cellsAmount = 0
-    var userName = "qqq"
+    var userName = ""
     var date: Date?
-    var tries = 0
     
     var userResult: Scores?
     
@@ -23,10 +22,10 @@ class WrittingResultsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-        let newButton = UIBarButtonItem(title: "return to levels", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.returnToMainMenu))
+        let newButton = UIBarButtonItem(title: "return to levels", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.returnToLevels))
         self.navigationItem.leftBarButtonItem = newButton
-        let rightButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.shareResults))
-        self.navigationItem.rightBarButtonItem = rightButton
+//        let rightButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.shareResults))
+//        self.navigationItem.rightBarButtonItem = rightButton
         saveObj(userName)
         do {
             try fetchedResultsController.performFetch()
@@ -35,8 +34,7 @@ class WrittingResultsController: UIViewController {
         }
     }
     
-    @objc func returnToMainMenu() {
-       // navigationController?.popToRootViewController(animated: false)
+    @objc func returnToLevels() {
         let controllerIndex = self.navigationController?.viewControllers.index(where: { (viewController) -> Bool in
             return viewController is LevelVC
         })
@@ -61,7 +59,6 @@ class WrittingResultsController: UIViewController {
     }
     
     
-    //----------------------------------------------------
     func saveObj(_ userName: String) {
         if userResult == nil {
             userResult = Scores()
@@ -76,7 +73,7 @@ class WrittingResultsController: UIViewController {
     }
 }
 
-extension WrittingResultsController: UITableViewDataSource {
+extension WrittingResultsVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! WrittingResultsTVCell
         let user = fetchedResultsController.object(at: indexPath) as! Scores
@@ -90,9 +87,17 @@ extension WrittingResultsController: UITableViewDataSource {
         cell.cardAmountLabel.text = "\(user.level)"
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let sections = fetchedResultsController.sections {
+            return sections[section].numberOfObjects
+        } else {
+            return 0
+        }
+    }
 }
 
-extension WrittingResultsController: UITableViewDelegate {
+extension WrittingResultsVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "cellId") as! WrittingResultsTVCell
@@ -112,18 +117,5 @@ extension WrittingResultsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 25
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = fetchedResultsController.sections {
-            if sections[section].numberOfObjects > 20 {
-                tries = 20
-            } else {
-                tries = sections[section].numberOfObjects
-            }
-                return tries
-        } else {
-            return 0
-        }
     }
 }
