@@ -14,7 +14,7 @@ class LeaderboardVC: UIViewController {
     var userName = ""
     var date: Date?
     var levels:[String]=[]
-    var levelCounter = 14
+    var levelCounter = 12
     var level = 1
     var rotationAngle: CGFloat!
     
@@ -24,7 +24,8 @@ class LeaderboardVC: UIViewController {
     var userResult: Scores?
     
     var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "score", ascending: true, predicateVar: 1)
-        
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         do {
@@ -123,7 +124,7 @@ extension LeaderboardVC: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(levels[row])
+       // print(levels[row])
         level = row + 1
         updateTableView()
         self.tableView.reloadData()

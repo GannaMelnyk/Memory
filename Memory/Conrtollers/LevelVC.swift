@@ -10,7 +10,7 @@ import UIKit
 
 class LevelVC: UIViewController {
     var level = 1
-    var levelCounter = 14
+    var levelCounter = 12
     var levels:[String]=[]
     var user: String?
     
@@ -18,7 +18,6 @@ class LevelVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TO DO
         for i in 1...levelCounter {
             levels.append("\(i)")
         }
@@ -66,6 +65,7 @@ extension LevelVC: UICollectionViewDataSource {
 //
 
 extension LevelVC: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         level = Int(levels[indexPath.row])!
         performSegue(withIdentifier: "gameSegue", sender: self)
@@ -81,7 +81,7 @@ extension LevelVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = collectionView.frame.width
-        let side = (screenWidth / 2) - 10
+        let side = (screenWidth / 3) - 10
         return CGSize(width: side, height: side)
     }
 }

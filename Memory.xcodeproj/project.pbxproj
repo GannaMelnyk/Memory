@@ -63,6 +63,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D30E91AF2023A13B007C84A8 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				D33BAC03201E4F6800EE1512 /* AppDelegate.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		D30E91B02023A15E007C84A8 /* Conrtollers */ = {
+			isa = PBXGroup;
+			children = (
+				D346893B20224F2B00235DD0 /* LeaderboardVC.swift */,
+				D33BAC05201E4F6800EE1512 /* LoginVC.swift */,
+				D328B5FB201F2E6D00591543 /* GameVC.swift */,
+				D33BAC20201E7FD100EE1512 /* LevelVC.swift */,
+				D346893320206F4300235DD0 /* WrittingResultsVC.swift */,
+			);
+			path = Conrtollers;
+			sourceTree = "<group>";
+		};
+		D30E91B12023A1A3007C84A8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */,
+				D33BAC22201E807D00EE1512 /* LevelCellCVCell.swift */,
+				D346893920224EEE00235DD0 /* LeaderboardTVCell.swift */,
+				D328B5FD201F432500591543 /* GameCellCVCell.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D33BABF7201E4F6800EE1512 = {
 			isa = PBXGroup;
 			children = (
@@ -82,19 +113,12 @@
 		D33BAC02201E4F6800EE1512 /* Memory */ = {
 			isa = PBXGroup;
 			children = (
-				D346893B20224F2B00235DD0 /* LeaderboardVC.swift */,
-				D346893920224EEE00235DD0 /* LeaderboardTVCell.swift */,
-				D33BAC03201E4F6800EE1512 /* AppDelegate.swift */,
-				D33BAC05201E4F6800EE1512 /* LoginVC.swift */,
-				D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */,
-				D328B5FB201F2E6D00591543 /* GameVC.swift */,
-				D33BAC22201E807D00EE1512 /* LevelCellCVCell.swift */,
-				D346893320206F4300235DD0 /* WrittingResultsVC.swift */,
-				D328B5FD201F432500591543 /* GameCellCVCell.swift */,
-				D33BAC20201E7FD100EE1512 /* LevelVC.swift */,
-				D34689382021E81800235DD0 /* View */,
-				D34689372021E7B900235DD0 /* CoreData */,
 				D33BAC12201E4F6800EE1512 /* Info.plist */,
+				D30E91B02023A15E007C84A8 /* Conrtollers */,
+				D30E91AF2023A13B007C84A8 /* System */,
+				D30E91B12023A1A3007C84A8 /* Models */,
+				D34689382021E81800235DD0 /* Views */,
+				D34689372021E7B900235DD0 /* CoreData */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -112,14 +136,14 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		D34689382021E81800235DD0 /* View */ = {
+		D34689382021E81800235DD0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				D33BAC0D201E4F6800EE1512 /* Assets.xcassets */,
 				D33BAC07201E4F6800EE1512 /* Main.storyboard */,
 				D33BAC0F201E4F6800EE1512 /* LaunchScreen.storyboard */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

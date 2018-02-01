@@ -218,6 +218,10 @@ extension GameVC: UICollectionViewDelegateFlowLayout {
         let screenWidth = collectionView.frame.width
         let screenHeight = collectionView.frame.height
         let cell = cellsRowAndColomn()
-        return CGSize(width: screenWidth/CGFloat(cell.cellInRow) - 10, height: screenHeight/CGFloat(cell.cellInColomn) - 10)
+        if (screenWidth < screenHeight) {
+            return CGSize(width: screenWidth/CGFloat(cell.cellInRow) - 5, height: screenHeight/CGFloat(cell.cellInColomn) - 5)
+        } else {
+            return CGSize(width: screenWidth/CGFloat(cell.cellInColomn) - 5, height: screenHeight/CGFloat(cell.cellInRow) - 5)
+        }
     }
 }
