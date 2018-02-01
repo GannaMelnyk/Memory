@@ -18,7 +18,6 @@ class GameVC: UIViewController {
     let penalty = 2
     let timePenalty = 2.0
     var cellsCounter = 4
-    let cellForRowAndCollomn: [Int: [Int]] = [4: [2,2], 8: [2,4], 12: [3,4], 16: [4,4], 20: [4,5], 24: [4,6], 28: [4,7], 32: [4,8], 36: [6,6], 40: [5,8], 44: [4,11], 48: [6,8], 52: [4,13], 56: [7,8]]
     var score:Int = 0 {
         didSet{
             navigationItem.title = "\(score)"
@@ -36,6 +35,18 @@ class GameVC: UIViewController {
     
     @objc func updateTimer() {
         score += 1
+    }
+    
+    func cellsRowAndColomn() -> (cellInRow: Int, cellInColomn: Int){
+        var cellInRow = Int(floor(sqrt(Double(cellsAmount))))
+        while (cellsAmount % cellInRow != 0) {
+            cellInRow -= 1
+            if (cellInRow == 1) {
+                break
+            }
+        }
+        let cellInColomn = cellsAmount / cellInRow
+        return (cellInRow, cellInColomn)
     }
     
     func newGame() {
@@ -206,7 +217,7 @@ extension GameVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = collectionView.frame.width
         let screenHeight = collectionView.frame.height
-        let cellCounter = cellForRowAndCollomn[cellsAmount]
-        return CGSize(width: screenWidth/CGFloat(cellCounter![0]) - 10, height: screenHeight/CGFloat(cellCounter![1]) - 10)
+        let cell = cellsRowAndColomn()
+        return CGSize(width: screenWidth/CGFloat(cell.cellInRow) - 10, height: screenHeight/CGFloat(cell.cellInColomn) - 10)
     }
 }

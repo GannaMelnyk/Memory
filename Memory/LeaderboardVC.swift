@@ -16,6 +16,7 @@ class LeaderboardVC: UIViewController {
     var levels:[String]=[]
     var levelCounter = 14
     var level = 1
+    var rotationAngle: CGFloat!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pickerView: UIPickerView!
@@ -35,6 +36,10 @@ class LeaderboardVC: UIViewController {
         for i in 1...levelCounter {
             levels.append("Level: \(i)")
         }
+        rotationAngle =  270 * (.pi / 180)
+        let y = pickerView.frame.origin.y
+        pickerView.transform = CGAffineTransform(rotationAngle: rotationAngle)
+        pickerView.frame = CGRect(x: -100, y: y, width: view.frame.width + 200, height: 100)
     }
     
     func dateConversion(date: Date) -> String {
@@ -113,6 +118,10 @@ extension LeaderboardVC: UIPickerViewDelegate {
         return levels[row]
     }
     
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 100
+    }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(levels[row])
         level = row + 1
@@ -122,6 +131,7 @@ extension LeaderboardVC: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = UILabel()
+        pickerLabel.transform = CGAffineTransform(rotationAngle: (90 * (.pi / 180)))
         let titleData = levels[row]
         let myTitle = NSAttributedString(string: titleData, attributes: [NSAttributedStringKey.font:UIFont(name: "Georgia", size: 22.0) as Any,NSAttributedStringKey.foregroundColor:UIColor.white])
         pickerLabel.attributedText = myTitle

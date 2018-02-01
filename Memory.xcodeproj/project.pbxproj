@@ -66,8 +66,6 @@
 		D33BABF7201E4F6800EE1512 = {
 			isa = PBXGroup;
 			children = (
-				D346893B20224F2B00235DD0 /* LeaderboardVC.swift */,
-				D346893920224EEE00235DD0 /* LeaderboardTVCell.swift */,
 				D33BAC02201E4F6800EE1512 /* Memory */,
 				D33BAC01201E4F6800EE1512 /* Products */,
 			);
@@ -84,6 +82,8 @@
 		D33BAC02201E4F6800EE1512 /* Memory */ = {
 			isa = PBXGroup;
 			children = (
+				D346893B20224F2B00235DD0 /* LeaderboardVC.swift */,
+				D346893920224EEE00235DD0 /* LeaderboardTVCell.swift */,
 				D33BAC03201E4F6800EE1512 /* AppDelegate.swift */,
 				D33BAC05201E4F6800EE1512 /* LoginVC.swift */,
 				D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */,

@@ -188,8 +188,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yad-1V-hHs">
+                                <rect key="frame" x="0.0" y="88" width="375" height="95"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="G3u-Sv-1xi" id="7cX-oI-4Co"/>
+                                    <outlet property="delegate" destination="G3u-Sv-1xi" id="VZ4-Ab-RbJ"/>
+                                </connections>
+                            </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="10" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="eaG-FD-2XG">
-                                <rect key="frame" x="0.0" y="88" width="375" height="596"/>
+                                <rect key="frame" x="0.0" y="182" width="375" height="596"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -245,14 +253,6 @@
                                     <outlet property="delegate" destination="G3u-Sv-1xi" id="HDA-y8-0Jk"/>
                                 </connections>
                             </tableView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yad-1V-hHs">
-                                <rect key="frame" x="0.0" y="683" width="187" height="95"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="G3u-Sv-1xi" id="7cX-oI-4Co"/>
-                                    <outlet property="delegate" destination="G3u-Sv-1xi" id="VZ4-Ab-RbJ"/>
-                                </connections>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Gxu-tb-cp9"/>
