@@ -10,7 +10,7 @@ import UIKit
 
 class LevelVC: UIViewController {
     var level = 1
-    var levelCounter = 20
+    var levelCounter = 14
     var levels:[String]=[]
     var user: String?
     
@@ -57,7 +57,7 @@ extension LevelVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return levelCounter
     }
 }
 

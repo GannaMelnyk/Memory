@@ -13,6 +13,10 @@ class LeaderboardVC: UIViewController {
     var cellAmount = 0
     var userName = ""
     var date: Date?
+    var levels:[String]=[]
+    var levelCounter = 14
+    
+    @IBOutlet weak var pickerView: UIPickerView!
     
     var userResult: Scores?
     
@@ -24,6 +28,10 @@ class LeaderboardVC: UIViewController {
             try fetchedResultsController.performFetch()
         } catch {
             print(error)
+        }
+        
+        for i in 1...levelCounter {
+            levels.append("Level: \(i)")
         }
     }
     
@@ -79,3 +87,47 @@ extension LeaderboardVC: UITableViewDelegate {
         return 25
     }
 }
+
+extension LeaderboardVC: UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return levels.count
+    }
+    
+}
+
+extension LeaderboardVC: UIPickerViewDelegate {
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return levels[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print(levels[row])
+        updateTableView()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        let titleData = levels[row]
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSAttributedStringKey.font:UIFont(name: "Georgia", size: 22.0) as Any,NSAttributedStringKey.foregroundColor:UIColor.white])
+        pickerLabel.attributedText = myTitle
+        pickerLabel.backgroundColor = colorForBackground(viewForRow: row)
+        pickerLabel.textAlignment = .center
+        return pickerLabel
+    }
+    
+    private func colorForBackground(viewForRow row: Int) -> UIColor {
+        let blueColor = 1 - (CGFloat(row)/CGFloat(levels.count - 1) * 0.5)
+        return UIColor(displayP3Red: 0.0, green: 0.0, blue: blueColor, alpha: 1.0)
+    }
+}
+
+
+
+
+

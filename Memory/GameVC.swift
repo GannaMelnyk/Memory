@@ -18,7 +18,7 @@ class GameVC: UIViewController {
     let penalty = 2
     let timePenalty = 2.0
     var cellsCounter = 4
-    let cellForRowAndCollomn: [Int: [Int]] = [4: [2,2], 8: [2,4], 12: [3,4], 16: [4,4], 20: [4,5], 24: [4,6], 28: [4,7], 32: [4,8], 36: [6,6], 40: [5,8]]
+    let cellForRowAndCollomn: [Int: [Int]] = [4: [2,2], 8: [2,4], 12: [3,4], 16: [4,4], 20: [4,5], 24: [4,6], 28: [4,7], 32: [4,8], 36: [6,6], 40: [5,8], 44: [4,11], 48: [6,8], 52: [4,13], 56: [7,8]]
     var score:Int = 0 {
         didSet{
             navigationItem.title = "\(score)"
