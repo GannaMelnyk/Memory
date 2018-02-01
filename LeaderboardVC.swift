@@ -15,13 +15,15 @@ class LeaderboardVC: UIViewController {
     var date: Date?
     var levels:[String]=[]
     var levelCounter = 14
+    var level = 1
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pickerView: UIPickerView!
     
     var userResult: Scores?
     
-    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "score")
-    
+    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "score", ascending: true, predicateVar: 1)
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         do {
@@ -39,7 +41,15 @@ class LeaderboardVC: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MMM/yy HH:mm"
         return formatter.string(from: date)
-        
+    }
+    
+    func updateTableView(){
+        fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "score", ascending: true, predicateVar: level)
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print(error)
+        }
     }
 }
 
@@ -66,17 +76,14 @@ extension LeaderboardVC: UITableViewDataSource {
 
 extension LeaderboardVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "leaderboardCellId") as! LeaderboardTVCell
-        headerCell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         headerCell.nameLabel.backgroundColor = #colorLiteral(red: 0.3713936225, green: 0.7476998731, blue: 0.6512246604, alpha: 1)
         headerCell.scoreLabel.backgroundColor = #colorLiteral(red: 0.3713936225, green: 0.7476998731, blue: 0.6512246604, alpha: 1)
         headerCell.dateLabel.backgroundColor = #colorLiteral(red: 0.3713936225, green: 0.7476998731, blue: 0.6512246604, alpha: 1)
         headerCell.nameLabel.text = "name"
         headerCell.scoreLabel.text = "score"
         headerCell.dateLabel.text = "date"
-        headerView.addSubview(headerCell)
-        return headerView
+        return headerCell.contentView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -108,7 +115,9 @@ extension LeaderboardVC: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(levels[row])
+        level = row + 1
         updateTableView()
+        self.tableView.reloadData()
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -126,8 +135,5 @@ extension LeaderboardVC: UIPickerViewDelegate {
         return UIColor(displayP3Red: 0.0, green: 0.0, blue: blueColor, alpha: 1.0)
     }
 }
-
-
-
 
 

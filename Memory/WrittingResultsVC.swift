@@ -17,7 +17,8 @@ class WrittingResultsVC: UIViewController {
     
     var userResult: Scores?
     
-    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "gameDate")
+//    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "gameDate")
+    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "gameDate", ascending: false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
