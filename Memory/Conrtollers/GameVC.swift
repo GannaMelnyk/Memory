@@ -18,7 +18,6 @@ class GameVC: UIViewController {
     let penalty = 2
     let timePenalty = 1.0
     var cellsCounter = 4
-   // var timerInSeconds = 0
     var score:Int = 0 {
         didSet{
             navigationItem.title = "Score: \(score)"
@@ -37,7 +36,7 @@ class GameVC: UIViewController {
         super.viewDidLoad()
         newGame()
         navigationItem.title = "Score: \(score)"
-        let rightButton = UIBarButtonItem(title: "\(timerInSeconds)", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        let rightButton = UIBarButtonItem(title: "Time: \(timerInSeconds)", style: UIBarButtonItemStyle.plain, target: self, action: nil)
         rightButton.style = .plain
         self.navigationItem.rightBarButtonItem = rightButton
     }

@@ -25,8 +25,6 @@ class LevelVC: UIViewController {
         }
     }
     
-    
-    
     override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(true)
         let writeLevelController = CoreManager.instance.fetchedResultsController(entityName: "Users", keyForSort: "user", ascending: true)

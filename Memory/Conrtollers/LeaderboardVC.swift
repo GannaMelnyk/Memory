@@ -17,14 +17,12 @@ class LeaderboardVC: UIViewController {
     var levelCounter = 12
     var level = 1
     var rotationAngle: CGFloat!
+    var userResult: Scores?
+    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "score", ascending: true, predicateVar: "1")
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pickerView: UIPickerView!
     
-    var userResult: Scores?
-    
-    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "score", ascending: true, predicateVar: "1")
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +39,6 @@ class LeaderboardVC: UIViewController {
         let y = pickerView.frame.origin.y
         pickerView.transform = CGAffineTransform(rotationAngle: rotationAngle)
         pickerView.frame = CGRect(x: -100, y: y, width: view.frame.width + 200, height: 100)
-    }
-    
-    func dateConversion(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MMM/yy HH:mm"
-        return formatter.string(from: date)
     }
     
     func updateTableView(){
@@ -122,7 +114,6 @@ extension LeaderboardVC: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-       // print(levels[row])
         level = row + 1
         updateTableView()
         self.tableView.reloadData()

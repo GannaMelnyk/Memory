@@ -11,7 +11,15 @@ import CoreData
 
 class UserVC: UIViewController {
     
+    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Users", keyForSort: "user", ascending: true)
+    var userName = "guest"
+    var level = 1
+    var userData: Users?
+    var logins:[Users] = []
+    var names:[String]=[]
+    
     @IBOutlet weak var tableView: UITableView!
+    
     @IBAction func addNewUser(_ sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: "Create new user", message: "Enter your nickname", preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "save", style: .default) {[weak self] action in
@@ -34,18 +42,8 @@ class UserVC: UIViewController {
         
     }
     
-    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Users", keyForSort: "user", ascending: true)
-    
-    var userName = "guest"
-    var level = 1
-    var userData: Users?
-    
-    var logins:[Users] = []
-    var names:[String]=[]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-       // saveObj(userName)
         do {
             try fetchedResultsController.performFetch()
         } catch {
