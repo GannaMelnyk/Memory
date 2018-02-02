@@ -152,7 +152,7 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THl-OW-S7O">
-                                <rect key="frame" x="107" y="354" width="186" height="30"/>
+                                <rect key="frame" x="75" y="354" width="225" height="30"/>
                                 <color key="backgroundColor" red="0.78757467459999997" green="0.95242565999999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Play as a guest">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -208,12 +208,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90746194124221802" green="1" blue="0.97604137659072876" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="THl-OW-S7O" firstAttribute="leading" secondItem="Cqb-Rh-8cl" secondAttribute="leading" constant="107" id="1DL-Fn-iZd"/>
+                            <constraint firstItem="THl-OW-S7O" firstAttribute="leading" secondItem="Cqb-Rh-8cl" secondAttribute="leading" constant="75" id="1DL-Fn-iZd"/>
                             <constraint firstItem="nIE-Kv-XfJ" firstAttribute="leading" secondItem="Cqb-Rh-8cl" secondAttribute="leading" constant="60" id="1H9-XF-hfa"/>
                             <constraint firstItem="MK4-JQ-GSC" firstAttribute="top" secondItem="nIE-Kv-XfJ" secondAttribute="bottom" constant="8" id="8Gj-js-zEq"/>
                             <constraint firstItem="Cqb-Rh-8cl" firstAttribute="trailing" secondItem="nIE-Kv-XfJ" secondAttribute="trailing" constant="60" id="PJs-ha-ip3"/>
                             <constraint firstItem="MK4-JQ-GSC" firstAttribute="leading" secondItem="Cqb-Rh-8cl" secondAttribute="leading" constant="60" id="UfM-Ib-SST"/>
-                            <constraint firstItem="Cqb-Rh-8cl" firstAttribute="trailing" secondItem="THl-OW-S7O" secondAttribute="trailing" constant="82" id="WtJ-ka-k1h"/>
+                            <constraint firstItem="Cqb-Rh-8cl" firstAttribute="trailing" secondItem="THl-OW-S7O" secondAttribute="trailing" constant="75" id="WtJ-ka-k1h"/>
                             <constraint firstItem="GBr-H9-FRj" firstAttribute="leading" secondItem="Cqb-Rh-8cl" secondAttribute="leading" id="ZAN-JJ-Pba"/>
                             <constraint firstItem="nIE-Kv-XfJ" firstAttribute="top" secondItem="Cqb-Rh-8cl" secondAttribute="top" constant="38" id="aBr-AQ-Cjy"/>
                             <constraint firstItem="THl-OW-S7O" firstAttribute="top" secondItem="MK4-JQ-GSC" secondAttribute="bottom" constant="8" id="avp-ZD-AU8"/>
