@@ -77,9 +77,9 @@
 			isa = PBXGroup;
 			children = (
 				D30E91B22023AA51007C84A8 /* UserVC.swift */,
+				D33BAC20201E7FD100EE1512 /* LevelVC.swift */,
 				D346893B20224F2B00235DD0 /* LeaderboardVC.swift */,
 				D328B5FB201F2E6D00591543 /* GameVC.swift */,
-				D33BAC20201E7FD100EE1512 /* LevelVC.swift */,
 				D346893320206F4300235DD0 /* WrittingResultsVC.swift */,
 			);
 			path = Conrtollers;
@@ -88,11 +88,11 @@
 		D30E91B12023A1A3007C84A8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */,
-				D33BAC22201E807D00EE1512 /* LevelCellCVCell.swift */,
 				D30E91B42023AB5C007C84A8 /* UserTVCell.swift */,
+				D33BAC22201E807D00EE1512 /* LevelCellCVCell.swift */,
 				D346893920224EEE00235DD0 /* LeaderboardTVCell.swift */,
 				D328B5FD201F432500591543 /* GameCellCVCell.swift */,
+				D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

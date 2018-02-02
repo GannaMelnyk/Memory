@@ -161,17 +161,16 @@
                                     <action selector="playButton:" destination="OSn-CU-YDZ" eventType="touchUpInside" id="9VR-cl-FiQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose user or create new one" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIE-Kv-XfJ">
-                                <rect key="frame" x="60" y="126" width="255" height="21"/>
-                                <color key="backgroundColor" red="0.78757467459999997" green="0.95242565999999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose user or create new one" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIE-Kv-XfJ">
+                                <rect key="frame" x="60" y="126" width="255" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MK4-JQ-GSC">
-                                <rect key="frame" x="60" y="155" width="255" height="191"/>
-                                <color key="backgroundColor" red="0.76529012060000001" green="1" blue="0.63416126650000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="sectionIndexBackgroundColor" red="0.76529012060000001" green="1" blue="0.63416126650000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="60" y="182" width="255" height="164"/>
+                                <color key="backgroundColor" red="0.90728963100000004" green="1" blue="0.97748668819999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.90728963100000004" green="1" blue="0.97748668819999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="userCellId" rowHeight="0.0" id="ao0-dQ-ps0" customClass="UserTVCell" customModule="Memory" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="255" height="0.0"/>
