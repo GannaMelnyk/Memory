@@ -16,11 +16,17 @@ class GameVC: UIViewController {
     var alreadySeenIndexies: [IndexPath] = []
     var timer: Timer?
     let penalty = 2
-    let timePenalty = 2.0
+    let timePenalty = 1.0
     var cellsCounter = 4
+   // var timerInSeconds = 0
     var score:Int = 0 {
         didSet{
-            navigationItem.title = "\(score)"
+            navigationItem.title = "Score: \(score)"
+        }
+    }
+    var timerInSeconds:Int = 0 {
+        didSet{
+            navigationItem.rightBarButtonItem?.title = "Time: \(timerInSeconds)"
         }
     }
     
@@ -30,11 +36,14 @@ class GameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         newGame()
-        navigationItem.title = "\(score)"
+        navigationItem.title = "Score: \(score)"
+        let rightButton = UIBarButtonItem(title: "\(timerInSeconds)", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        rightButton.style = .plain
+        self.navigationItem.rightBarButtonItem = rightButton
     }
     
     @objc func updateTimer() {
-        score += 1
+        timerInSeconds += 1
     }
     
     func cellsRowAndColomn() -> (cellInRow: Int, cellInColomn: Int){
@@ -57,6 +66,7 @@ class GameVC: UIViewController {
         cellsCounter = cellsAmount
         alreadySeenIndexies.removeAll()
         score = 0
+        timerInSeconds = 0
         collectionView.reloadData()
         setPause()
     }
@@ -132,6 +142,7 @@ class GameVC: UIViewController {
         holder.score = score
         holder.userName = userName
         holder.date = Date()
+        holder.timerInSeconds = timerInSeconds
     }
 }
 

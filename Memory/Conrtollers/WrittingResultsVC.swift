@@ -14,20 +14,46 @@ class WrittingResultsVC: UIViewController {
     var cellsAmount = 0
     var userName = ""
     var date: Date?
+    var levelChanging:[NSFetchRequestResult] = []
+    var timerInSeconds = 0
     
     var userResult: Scores?
+    var userForLevelUp: Users?
     
-//    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "gameDate")
     var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "gameDate", ascending: false)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         let newButton = UIBarButtonItem(title: "return to levels", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.returnToLevels))
         self.navigationItem.leftBarButtonItem = newButton
-//        let rightButton = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.shareResults))
-//        self.navigationItem.rightBarButtonItem = rightButton
         saveObj(userName)
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print(error)
+        }
+        
+        let writeLevelController = CoreManager.instance.fetchedResultsController(entityName: "Users", keyForSort: "user", ascending: true)
+
+        do {
+            try writeLevelController.performFetch()
+        } catch {
+            print(error)
+        }
+        let usersFromDB = writeLevelController.fetchedObjects as! [Users]
+        for userFromDB in usersFromDB {
+            let actualName = userFromDB.user
+            if actualName == userName {
+                var levelUpdater = userFromDB.level
+                if levelUpdater == cellsAmount/4 {
+                    levelUpdater = userFromDB.level + 1
+                    userFromDB.setValue(levelUpdater, forKey: "level")
+                }
+            }
+        }
+        CoreManager.instance.saveContext()
         do {
             try fetchedResultsController.performFetch()
         } catch {
@@ -59,7 +85,6 @@ class WrittingResultsVC: UIViewController {
         return screenshot
     }
     
-    
     func saveObj(_ userName: String) {
         if userResult == nil {
             userResult = Scores()
@@ -69,6 +94,7 @@ class WrittingResultsVC: UIViewController {
             userResult.score = Int16(score)
             userResult.level = Int16(cellsAmount / 4)
             userResult.gameDate = date
+            userResult.time = Int16(timerInSeconds)
         }
         CoreManager.instance.saveContext()
     }
@@ -82,10 +108,12 @@ extension WrittingResultsVC: UITableViewDataSource {
             cell.nameLabel.backgroundColor = #colorLiteral(red: 0.3851541522, green: 0.9626077852, blue: 0.8537584253, alpha: 1)
             cell.scoreLabel.backgroundColor = #colorLiteral(red: 0.3851541522, green: 0.9626077852, blue: 0.8537584253, alpha: 1)
             cell.cardAmountLabel.backgroundColor = #colorLiteral(red: 0.3851541522, green: 0.9626077852, blue: 0.8537584253, alpha: 1)
+            cell.timeLabel.backgroundColor = #colorLiteral(red: 0.3851541522, green: 0.9626077852, blue: 0.8537584253, alpha: 1)
         }
         cell.nameLabel.text = user.name
         cell.scoreLabel.text = "\(user.score)"
         cell.cardAmountLabel.text = "\(user.level)"
+        cell.timeLabel.text = "\(user.time)"
         return cell
     }
     
@@ -105,9 +133,11 @@ extension WrittingResultsVC: UITableViewDelegate {
         headerCell.nameLabel.backgroundColor = #colorLiteral(red: 0.3713936225, green: 0.7476998731, blue: 0.6512246604, alpha: 1)
         headerCell.scoreLabel.backgroundColor = #colorLiteral(red: 0.3713936225, green: 0.7476998731, blue: 0.6512246604, alpha: 1)
         headerCell.cardAmountLabel.backgroundColor = #colorLiteral(red: 0.3713936225, green: 0.7476998731, blue: 0.6512246604, alpha: 1)
+        headerCell.timeLabel.backgroundColor = #colorLiteral(red: 0.3713936225, green: 0.7476998731, blue: 0.6512246604, alpha: 1)
         headerCell.nameLabel.text = "name"
         headerCell.scoreLabel.text = "score"
         headerCell.cardAmountLabel.text = "level"
+        headerCell.timeLabel.text = "time"
         headerView.addSubview(headerCell)
         return headerView
     }

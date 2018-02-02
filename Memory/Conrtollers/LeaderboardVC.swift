@@ -23,7 +23,7 @@ class LeaderboardVC: UIViewController {
     
     var userResult: Scores?
     
-    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "score", ascending: true, predicateVar: 1)
+    var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "score", ascending: true, predicateVar: "1")
 
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class LeaderboardVC: UIViewController {
     }
     
     func updateTableView(){
-        fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "score", ascending: true, predicateVar: level)
+        fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Scores", keyForSort: "score", ascending: true, predicateVar: "\(level)")
         do {
             try fetchedResultsController.performFetch()
         } catch {
@@ -71,11 +71,9 @@ extension LeaderboardVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "leaderboardCellId", for: indexPath) as! LeaderboardTVCell
         let user = fetchedResultsController.object(at: indexPath) as! Scores
-        let date = user.gameDate
-        let formatedDate = dateConversion(date: date!)
         cell.nameLabel.text = "\(user.name ?? "name")"
         cell.scoreLabel.text = "\(user.score)"
-        cell.dateLabel.text = "\(formatedDate)"
+        cell.timeLabel.text = "\(user.time)"
         return cell
     }
 }
@@ -85,10 +83,10 @@ extension LeaderboardVC: UITableViewDelegate {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "leaderboardCellId") as! LeaderboardTVCell
         headerCell.nameLabel.backgroundColor = #colorLiteral(red: 0.3713936225, green: 0.7476998731, blue: 0.6512246604, alpha: 1)
         headerCell.scoreLabel.backgroundColor = #colorLiteral(red: 0.3713936225, green: 0.7476998731, blue: 0.6512246604, alpha: 1)
-        headerCell.dateLabel.backgroundColor = #colorLiteral(red: 0.3713936225, green: 0.7476998731, blue: 0.6512246604, alpha: 1)
+        headerCell.timeLabel.backgroundColor = #colorLiteral(red: 0.3713936225, green: 0.7476998731, blue: 0.6512246604, alpha: 1)
         headerCell.nameLabel.text = "name"
         headerCell.scoreLabel.text = "score"
-        headerCell.dateLabel.text = "date"
+        headerCell.timeLabel.text = "time"
         return headerCell.contentView
     }
     

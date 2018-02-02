@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class LevelVC: UIViewController {
     var level = 1
+    var resolvedLevel = 1
     var levelCounter = 12
     var levels:[String]=[]
     var user: String?
@@ -21,6 +23,28 @@ class LevelVC: UIViewController {
         for i in 1...levelCounter {
             levels.append("\(i)")
         }
+    }
+    
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(true)
+        let writeLevelController = CoreManager.instance.fetchedResultsController(entityName: "Users", keyForSort: "user", ascending: true)
+        do {
+            try writeLevelController.performFetch()
+        } catch {
+            print(error)
+        }
+        
+        let usersFromDB = writeLevelController.fetchedObjects as! [Users]
+        for userFromDB in usersFromDB {
+            let actualName = userFromDB.user
+            if actualName == user {
+                resolvedLevel = Int(userFromDB.level)
+            }
+        }
+        collectionView.reloadData()
+        
     }
     
     @IBAction func leaderboardButton(_ sender: UIBarButtonItem) {
@@ -51,7 +75,15 @@ extension LevelVC: UICollectionViewDataSource {
             fatalError("Wrong cell type dequeued")
         }
         cell.levelCellLabel.text = "level \(levels[indexPath.row])"
-        cell.levelCellImage.image = #imageLiteral(resourceName: "paper")
+      //  if indexOfCell < hidenLevels {
+        if indexPath.row < resolvedLevel{
+            cell.levelCellImage.image = #imageLiteral(resourceName: "paper")
+            cell.isUserInteractionEnabled = true
+            } else {
+            cell.levelCellImage.image = #imageLiteral(resourceName: "back")
+            cell.isUserInteractionEnabled = false
+            }
+        
         return cell
     }
     

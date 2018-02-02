@@ -13,5 +13,5 @@ class WrittingResultsTVCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var cardAmountLabel: UILabel!
-
+    @IBOutlet weak var timeLabel: UILabel!
 }

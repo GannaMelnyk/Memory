@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D30E91B32023AA51007C84A8 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30E91B22023AA51007C84A8 /* UserVC.swift */; };
+		D30E91B52023AB5C007C84A8 /* UserTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30E91B42023AB5C007C84A8 /* UserTVCell.swift */; };
 		D328B5FC201F2E6D00591543 /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328B5FB201F2E6D00591543 /* GameVC.swift */; };
 		D328B5FE201F432500591543 /* GameCellCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D328B5FD201F432500591543 /* GameCellCVCell.swift */; };
 		D33BAC04201E4F6800EE1512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BAC03201E4F6800EE1512 /* AppDelegate.swift */; };
-		D33BAC06201E4F6800EE1512 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BAC05201E4F6800EE1512 /* LoginVC.swift */; };
 		D33BAC09201E4F6800EE1512 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33BAC07201E4F6800EE1512 /* Main.storyboard */; };
 		D33BAC0C201E4F6800EE1512 /* Memory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D33BAC0A201E4F6800EE1512 /* Memory.xcdatamodeld */; };
 		D33BAC0E201E4F6800EE1512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D33BAC0D201E4F6800EE1512 /* Assets.xcassets */; };
 		D33BAC11201E4F6800EE1512 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33BAC0F201E4F6800EE1512 /* LaunchScreen.storyboard */; };
 		D33BAC19201E4FFA00EE1512 /* CoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BAC18201E4FFA00EE1512 /* CoreManager.swift */; };
-		D33BAC1C201E5B8600EE1512 /* Login+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BAC1A201E5B8600EE1512 /* Login+CoreDataClass.swift */; };
-		D33BAC1D201E5B8600EE1512 /* Login+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BAC1B201E5B8600EE1512 /* Login+CoreDataProperties.swift */; };
 		D33BAC21201E7FD100EE1512 /* LevelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BAC20201E7FD100EE1512 /* LevelVC.swift */; };
 		D33BAC23201E807D00EE1512 /* LevelCellCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BAC22201E807D00EE1512 /* LevelCellCVCell.swift */; };
 		D346893120206EC300235DD0 /* Scores+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346892F20206EC300235DD0 /* Scores+CoreDataClass.swift */; };
@@ -26,22 +25,23 @@
 		D3468936202075F300235DD0 /* WrittingResultsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */; };
 		D346893A20224EEE00235DD0 /* LeaderboardTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346893920224EEE00235DD0 /* LeaderboardTVCell.swift */; };
 		D346893C20224F2B00235DD0 /* LeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D346893B20224F2B00235DD0 /* LeaderboardVC.swift */; };
+		D3A791A92023B1D000A5D4F4 /* Users+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A791A72023B1D000A5D4F4 /* Users+CoreDataClass.swift */; };
+		D3A791AA2023B1D000A5D4F4 /* Users+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A791A82023B1D000A5D4F4 /* Users+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D30E91B22023AA51007C84A8 /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
+		D30E91B42023AB5C007C84A8 /* UserTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTVCell.swift; sourceTree = "<group>"; };
 		D328B5FB201F2E6D00591543 /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 		D328B5FD201F432500591543 /* GameCellCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCellCVCell.swift; sourceTree = "<group>"; };
 		D33BAC00201E4F6800EE1512 /* Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33BAC03201E4F6800EE1512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D33BAC05201E4F6800EE1512 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		D33BAC08201E4F6800EE1512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D33BAC0B201E4F6800EE1512 /* Memory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memory.xcdatamodel; sourceTree = "<group>"; };
 		D33BAC0D201E4F6800EE1512 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D33BAC10201E4F6800EE1512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D33BAC12201E4F6800EE1512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D33BAC18201E4FFA00EE1512 /* CoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreManager.swift; sourceTree = "<group>"; };
-		D33BAC1A201E5B8600EE1512 /* Login+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D33BAC1B201E5B8600EE1512 /* Login+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D33BAC20201E7FD100EE1512 /* LevelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelVC.swift; sourceTree = "<group>"; };
 		D33BAC22201E807D00EE1512 /* LevelCellCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCellCVCell.swift; sourceTree = "<group>"; };
 		D346892F20206EC300235DD0 /* Scores+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scores+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -50,6 +50,8 @@
 		D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrittingResultsTVCell.swift; sourceTree = "<group>"; };
 		D346893920224EEE00235DD0 /* LeaderboardTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTVCell.swift; sourceTree = "<group>"; };
 		D346893B20224F2B00235DD0 /* LeaderboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardVC.swift; sourceTree = "<group>"; };
+		D3A791A72023B1D000A5D4F4 /* Users+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Users+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D3A791A82023B1D000A5D4F4 /* Users+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Users+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +76,8 @@
 		D30E91B02023A15E007C84A8 /* Conrtollers */ = {
 			isa = PBXGroup;
 			children = (
+				D30E91B22023AA51007C84A8 /* UserVC.swift */,
 				D346893B20224F2B00235DD0 /* LeaderboardVC.swift */,
-				D33BAC05201E4F6800EE1512 /* LoginVC.swift */,
 				D328B5FB201F2E6D00591543 /* GameVC.swift */,
 				D33BAC20201E7FD100EE1512 /* LevelVC.swift */,
 				D346893320206F4300235DD0 /* WrittingResultsVC.swift */,
@@ -88,6 +90,7 @@
 			children = (
 				D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */,
 				D33BAC22201E807D00EE1512 /* LevelCellCVCell.swift */,
+				D30E91B42023AB5C007C84A8 /* UserTVCell.swift */,
 				D346893920224EEE00235DD0 /* LeaderboardTVCell.swift */,
 				D328B5FD201F432500591543 /* GameCellCVCell.swift */,
 			);
@@ -128,8 +131,8 @@
 			children = (
 				D33BAC0A201E4F6800EE1512 /* Memory.xcdatamodeld */,
 				D33BAC18201E4FFA00EE1512 /* CoreManager.swift */,
-				D33BAC1A201E5B8600EE1512 /* Login+CoreDataClass.swift */,
-				D33BAC1B201E5B8600EE1512 /* Login+CoreDataProperties.swift */,
+				D3A791A72023B1D000A5D4F4 /* Users+CoreDataClass.swift */,
+				D3A791A82023B1D000A5D4F4 /* Users+CoreDataProperties.swift */,
 				D346892F20206EC300235DD0 /* Scores+CoreDataClass.swift */,
 				D346893020206EC300235DD0 /* Scores+CoreDataProperties.swift */,
 			);
@@ -218,21 +221,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D30E91B52023AB5C007C84A8 /* UserTVCell.swift in Sources */,
+				D3A791A92023B1D000A5D4F4 /* Users+CoreDataClass.swift in Sources */,
 				D346893120206EC300235DD0 /* Scores+CoreDataClass.swift in Sources */,
 				D328B5FE201F432500591543 /* GameCellCVCell.swift in Sources */,
 				D346893420206F4300235DD0 /* WrittingResultsVC.swift in Sources */,
-				D33BAC1C201E5B8600EE1512 /* Login+CoreDataClass.swift in Sources */,
 				D346893A20224EEE00235DD0 /* LeaderboardTVCell.swift in Sources */,
 				D33BAC19201E4FFA00EE1512 /* CoreManager.swift in Sources */,
-				D33BAC06201E4F6800EE1512 /* LoginVC.swift in Sources */,
-				D33BAC1D201E5B8600EE1512 /* Login+CoreDataProperties.swift in Sources */,
 				D33BAC23201E807D00EE1512 /* LevelCellCVCell.swift in Sources */,
 				D3468936202075F300235DD0 /* WrittingResultsTVCell.swift in Sources */,
 				D33BAC04201E4F6800EE1512 /* AppDelegate.swift in Sources */,
 				D346893C20224F2B00235DD0 /* LeaderboardVC.swift in Sources */,
+				D3A791AA2023B1D000A5D4F4 /* Users+CoreDataProperties.swift in Sources */,
 				D346893220206EC300235DD0 /* Scores+CoreDataProperties.swift in Sources */,
 				D33BAC21201E7FD100EE1512 /* LevelVC.swift in Sources */,
 				D328B5FC201F2E6D00591543 /* GameVC.swift in Sources */,
+				D30E91B32023AA51007C84A8 /* UserVC.swift in Sources */,
 				D33BAC0C201E4F6800EE1512 /* Memory.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
