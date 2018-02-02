@@ -69,7 +69,7 @@ class UserVC: UIViewController {
             userData = Users()
         if let userData = userData {
             userData.user = userName
-            userData.level = Int16(level)
+            userData.level = 1
         }
         CoreManager.instance.saveContext()
         do {

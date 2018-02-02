@@ -75,7 +75,6 @@ extension LevelVC: UICollectionViewDataSource {
             fatalError("Wrong cell type dequeued")
         }
         cell.levelCellLabel.text = "level \(levels[indexPath.row])"
-      //  if indexOfCell < hidenLevels {
         if indexPath.row < resolvedLevel{
             cell.levelCellImage.image = #imageLiteral(resourceName: "paper")
             cell.isUserInteractionEnabled = true
