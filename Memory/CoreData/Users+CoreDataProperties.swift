@@ -19,5 +19,4 @@ extension Users {
 
     @NSManaged public var user: String?
     @NSManaged public var level: Int16
-
 }

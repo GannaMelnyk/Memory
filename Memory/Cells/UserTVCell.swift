@@ -11,5 +11,4 @@ import UIKit
 class UserTVCell: UITableViewCell {
 
     @IBOutlet weak var userName: UILabel!
-    
 }

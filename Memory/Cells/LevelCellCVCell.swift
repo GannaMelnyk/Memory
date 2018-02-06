@@ -11,6 +11,5 @@ import UIKit
 class LevelCellCVCell: UICollectionViewCell {
     
     @IBOutlet weak var levelCellLabel: UILabel!
-    
     @IBOutlet weak var levelCellImage: UIImageView!
 }

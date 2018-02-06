@@ -9,23 +9,30 @@
 import UIKit
 
 class GameVC: UIViewController {
+    
+    let penalty = 2
+    let timeUpdationInterval = 1.0
+    let cellMagrings: CGFloat = 5
+    let maxInt16Num = Int16.max
+    
     var cellsAmount = 4
     var userName = ""
     var pictures: [UIImage] = []
     var selectedIndexies: [IndexPath] = []
     var alreadySeenIndexies: [IndexPath] = []
     var timer: Timer?
-    let penalty = 2
-    let timePenalty = 1.0
     var cellsCounter = 4
-    var score:Int = 0 {
+    
+    var score: Int = 0 {
         didSet{
-            navigationItem.title = "Score: \(score)"
+            let item = navigationItem.rightBarButtonItems?[1] ?? UIBarButtonItem(title: "Score: \(timerInSeconds)", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+            item.title = "Score: \(score)"
         }
     }
-    var timerInSeconds:Int = 0 {
+    var timerInSeconds: Int = 0 {
         didSet{
-            navigationItem.rightBarButtonItem?.title = "Time: \(timerInSeconds)"
+        let item = navigationItem.rightBarButtonItems?[0] ?? UIBarButtonItem(title: "Time: \(timerInSeconds)", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+            item.title = "Time: \(timerInSeconds)"
         }
     }
     
@@ -34,15 +41,79 @@ class GameVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.collectionView.backgroundColor = UIColor.clear
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "launchScreen"))
+        let imageView = UIImageView(frame: self.view.bounds)
+        imageView.image = #imageLiteral(resourceName: "launchScreen")
+        self.view.addSubview(imageView)
+        self.view.sendSubview(toBack: imageView)
+        
         newGame()
-        navigationItem.title = "Score: \(score)"
-        let rightButton = UIBarButtonItem(title: "Time: \(timerInSeconds)", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        rightButton.style = .plain
-        self.navigationItem.rightBarButtonItem = rightButton
+        
+        let timerButton = UIBarButtonItem(title: "Time: \(timerInSeconds)", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        timerButton.style = .plain
+        let scoreButton = UIBarButtonItem(title: "Score: \(score)", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        scoreButton.style = .plain
+        self.navigationItem.rightBarButtonItems = [timerButton, scoreButton]
+    }
+    
+    @IBAction func pause(_ sender: UIBarButtonItem) {
+        pauseOrStartTimer()
+    }
+    
+    @IBAction func reload(_ sender: UIBarButtonItem) {
+        timer?.invalidate()
+        newGame()
+    }
+    
+    @IBAction func share(_ sender: UIBarButtonItem) {
+        let screenForSharing = captureScreen()
+        let activityVC = UIActivityViewController(activityItems: [screenForSharing ?? #imageLiteral(resourceName: "launchScreen")], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        self.present(activityVC, animated: true, completion: nil)
     }
     
     @objc func updateTimer() {
         timerInSeconds += 1
+        if timerInSeconds >= maxInt16Num {
+            gameOver()
+        }
+    }
+    
+    func pauseOrStartTimer() {
+        if (timer?.isValid ?? false) {
+            timer?.invalidate()
+            self.collectionView.isUserInteractionEnabled = false
+        } else {
+            timer = Timer.scheduledTimer(timeInterval: timeUpdationInterval, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+            self.collectionView.isUserInteractionEnabled = true
+        }
+    }
+    
+    func captureScreen() -> UIImage? {
+        let layer = UIApplication.shared.keyWindow!.layer
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+        return screenshot
+    }
+    
+    func endTheGame(){
+        timer?.invalidate()
+        performSegue(withIdentifier: "segueToResults", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let holder = segue.destination as? WrittingResultsVC else {
+            fatalError("cannot create connection to WrittingResultsVC")
+        }
+        holder.cellsAmount = cellsAmount
+        holder.score = score
+        holder.userName = userName
+        holder.date = Date()
+        holder.timerInSeconds = timerInSeconds
     }
     
     func cellsRowAndColomn() -> (cellInRow: Int, cellInColomn: Int){
@@ -67,9 +138,9 @@ class GameVC: UIViewController {
         score = 0
         timerInSeconds = 0
         collectionView.reloadData()
-        setPause()
+        pauseOrStartTimer()
     }
-
+    
     func initialShuffler() {
         var unShuffledArray = pictures
         pictures.removeAll()
@@ -95,53 +166,25 @@ class GameVC: UIViewController {
         }
     }
     
-    @IBAction func pause(_ sender: UIBarButtonItem) {
-        setPause()
-    }
-    
-    func setPause() {
-        if !(timer?.isValid ?? false) {
-            timer = Timer.scheduledTimer(timeInterval: timePenalty, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
-            self.collectionView.isUserInteractionEnabled = true
-        } else {
-            timer?.invalidate()
-            self.collectionView.isUserInteractionEnabled = false
+    func cellCasting(index: Int) -> GameCellCVCell {
+        guard let cell = collectionView.cellForItem(at: selectedIndexies[index]) as? GameCellCVCell else {
+            fatalError("wrong cell type")
         }
+        return cell
     }
     
-    @IBAction func reload(_ sender: UIBarButtonItem) {
-        timer?.invalidate()
-        newGame()
+    func setPicture(index: Int) -> UIImage {
+        return pictures[selectedIndexies[index].row]
     }
     
-    @IBAction func share(_ sender: UIBarButtonItem) {
-        let screenForSharing = captureScreen()
-        let activityVC = UIActivityViewController(activityItems: [screenForSharing!], applicationActivities: nil)
-        activityVC.popoverPresentationController?.sourceView = self.view
-        self.present(activityVC, animated: true, completion: nil)
-    }
-    
-    func captureScreen() -> UIImage? {
-        let layer = UIApplication.shared.keyWindow!.layer
-        let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
-        layer.render(in: UIGraphicsGetCurrentContext()!)
-        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
-        return screenshot
-    }
-    
-    func endTheGame(){
-        timer?.invalidate()
-        performSegue(withIdentifier: "segueToResults", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let holder = segue.destination as! WrittingResultsVC
-        holder.cellsAmount = cellsAmount
-        holder.score = score
-        holder.userName = userName
-        holder.date = Date()
-        holder.timerInSeconds = timerInSeconds
+    func gameOver() {
+        self.timer?.invalidate()
+        let alertController = UIAlertController(title: "Game over!", message: "you reached the max resolved value", preferredStyle: .alert)
+        let newGameAction = UIAlertAction(title: "new game", style: .destructive) { action in
+            self.newGame()
+        }
+        alertController.addAction(newGameAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -170,30 +213,35 @@ extension GameVC: UICollectionViewDataSource {
 //
 
 extension GameVC: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndexies.append(indexPath)
         score += 1
+        if score > maxInt16Num {
+            gameOver()
+        }
+        
         switch selectedIndexies.count {
         case 3:
-            let cell1 = collectionView.cellForItem(at: selectedIndexies[0]) as! GameCellCVCell
-            let cell2 = collectionView.cellForItem(at: selectedIndexies[1]) as! GameCellCVCell
-            let cell3 = collectionView.cellForItem(at: selectedIndexies[2]) as! GameCellCVCell
+            let cell1 = cellCasting(index: 0)
+            let cell2 = cellCasting(index: 1)
+            let cell3 = cellCasting(index: 2)
             cell1.flipDown()
             cell2.flipDown()
-            cell3.flipUp(picture: pictures[selectedIndexies[2].row])
+            cell3.flipUp(picture: setPicture(index: 2))
             selectedIndexies.remove(at: 0)
             selectedIndexies.remove(at: 0)
         case 2:
             if selectedIndexies[0] == selectedIndexies[1] {
                 alreadySeenIndexies.append(selectedIndexies[0])
                 score += penalty
-                let cell = collectionView.cellForItem(at: selectedIndexies[0]) as! GameCellCVCell
+                let cell = cellCasting(index: 0)
                 cell.flipDown()
                 selectedIndexies.removeAll()
             } else {
-                let cell1 = collectionView.cellForItem(at: selectedIndexies[0]) as! GameCellCVCell
-                let cell2 = collectionView.cellForItem(at: selectedIndexies[1]) as! GameCellCVCell
-                cell2.flipUp(picture: pictures[selectedIndexies[1].row])
+                let cell1 = cellCasting(index: 0)
+                let cell2 = cellCasting(index: 1)
+                cell2.flipUp(picture: setPicture(index: 1))
                 if pictures[selectedIndexies[0].row] == pictures[selectedIndexies[1].row] {
                     cell1.remove()
                     cell2.remove()
@@ -211,11 +259,10 @@ extension GameVC: UICollectionViewDelegate {
                 }
             }
         default:
-            let cell = collectionView.cellForItem(at: selectedIndexies[0]) as! GameCellCVCell
+            let cell = cellCasting(index: 0)
             cell.flipUp(picture: pictures[selectedIndexies[0].row])
         }
     }
-    
 }
 
 //
@@ -229,9 +276,9 @@ extension GameVC: UICollectionViewDelegateFlowLayout {
         let screenHeight = collectionView.frame.height
         let cell = cellsRowAndColomn()
         if (screenWidth < screenHeight) {
-            return CGSize(width: screenWidth/CGFloat(cell.cellInRow) - 5, height: screenHeight/CGFloat(cell.cellInColomn) - 5)
+            return CGSize(width: screenWidth/CGFloat(cell.cellInRow) - cellMagrings, height: screenHeight/CGFloat(cell.cellInColomn) - cellMagrings)
         } else {
-            return CGSize(width: screenWidth/CGFloat(cell.cellInColomn) - 5, height: screenHeight/CGFloat(cell.cellInRow) - 5)
+            return CGSize(width: screenWidth/CGFloat(cell.cellInColomn) - cellMagrings, height: screenHeight/CGFloat(cell.cellInRow) - cellMagrings)
         }
     }
 }

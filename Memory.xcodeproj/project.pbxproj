@@ -85,7 +85,7 @@
 			path = Conrtollers;
 			sourceTree = "<group>";
 		};
-		D30E91B12023A1A3007C84A8 /* Models */ = {
+		D30E91B12023A1A3007C84A8 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				D30E91B42023AB5C007C84A8 /* UserTVCell.swift */,
@@ -94,7 +94,7 @@
 				D328B5FD201F432500591543 /* GameCellCVCell.swift */,
 				D3468935202075F300235DD0 /* WrittingResultsTVCell.swift */,
 			);
-			path = Models;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		D33BABF7201E4F6800EE1512 = {
@@ -119,7 +119,7 @@
 				D33BAC12201E4F6800EE1512 /* Info.plist */,
 				D30E91B02023A15E007C84A8 /* Conrtollers */,
 				D30E91AF2023A13B007C84A8 /* System */,
-				D30E91B12023A1A3007C84A8 /* Models */,
+				D30E91B12023A1A3007C84A8 /* Cells */,
 				D34689382021E81800235DD0 /* Views */,
 				D34689372021E7B900235DD0 /* CoreData */,
 			);

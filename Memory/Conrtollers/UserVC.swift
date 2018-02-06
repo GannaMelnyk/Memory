@@ -11,6 +11,8 @@ import CoreData
 
 class UserVC: UIViewController {
     
+    let tableRowHeight: CGFloat = 25
+    
     var fetchedResultsController = CoreManager.instance.fetchedResultsController(entityName: "Users", keyForSort: "user", ascending: true)
     var userName = "guest"
     var level = 1
@@ -19,6 +21,11 @@ class UserVC: UIViewController {
     var names:[String]=[]
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var playButtonOutlet: UIButton!
+    
+    @IBAction func playButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "levelSegue", sender: self)
+    }
     
     @IBAction func addNewUser(_ sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: "Create new user", message: "Enter your nickname", preferredStyle: .alert)
@@ -30,8 +37,8 @@ class UserVC: UIViewController {
                 hiddenAlertController.addAction(cancelAction)
                 self?.present(hiddenAlertController, animated: false, completion: nil)
             } else {
-            self?.saveObj(userName)
-            self?.tableView.reloadData()
+                self?.saveObj(userName)
+                self?.tableView.reloadData()
             }
         }
         let cancelAction = UIAlertAction(title: "cancel", style: .destructive, handler: nil)
@@ -39,28 +46,30 @@ class UserVC: UIViewController {
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: false, completion: nil)
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.backgroundColor = .clear
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "launchScreen"))
+        let imageView = UIImageView(frame: self.view.bounds)
+        imageView.image = #imageLiteral(resourceName: "launchScreen")
+        self.view.addSubview(imageView)
+        self.view.sendSubview(toBack: imageView)
+        
         do {
             try fetchedResultsController.performFetch()
         } catch {
             print(error)
         }
-        logins = fetchedResultsController.fetchedObjects as! [Users]
+        guard let logins = fetchedResultsController.fetchedObjects as? [Users] else {
+            fatalError("Error: wrong request to DB")
+        }
         for login in logins {
             names.append(login.user!)
         }
         playButtonOutlet.setTitle("play as a \(userName)", for: .normal)
-    }
-    
-    
-    @IBOutlet weak var playButtonOutlet: UIButton!
-    
-    @IBAction func playButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "levelSegue", sender: self)
     }
     
     func saveObj(_ userName: String) {
@@ -82,14 +91,18 @@ class UserVC: UIViewController {
         holder.user = userName
         holder.resolvedLevel = level
     }
-    
 }
 
 extension UserVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "userCellId", for: indexPath) as! UserTVCell
-        let user = fetchedResultsController.object(at: indexPath) as! Users
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCellId", for: indexPath) as? UserTVCell else {
+            fatalError("wrong table view Cell in UserVC")
+        }
+        guard let user = fetchedResultsController.object(at: indexPath) as? Users else {
+            fatalError("it's not a user")
+        }
         cell.userName.text = "\(user.user ?? "user")"
+        cell.layer.backgroundColor = UIColor.clear.cgColor
         return cell
     }
     
@@ -105,11 +118,13 @@ extension UserVC: UITableViewDataSource {
 extension UserVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 25
+        return tableRowHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user = fetchedResultsController.object(at: indexPath) as! Users
+        guard let user = fetchedResultsController.object(at: indexPath) as? Users else {
+            fatalError("it's not a user")
+        }
         userName = user.user ?? "user"
         if userName == "guest" {
             level = 1
